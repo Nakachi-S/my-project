@@ -10,6 +10,7 @@
 <script>
 /* eslint-disable */
 import Qr from './Qr';
+import InfoGuest from './InfoGuest'
 
 export default {
   data() {
@@ -25,12 +26,13 @@ export default {
     },
     pushPage(e) {
       if (e.page === 'Qr') e.page = Qr;
+      if (e.page === 'InfoGuest') e.page = InfoGuest;
       this.pageStack.push({
         extends: e.page,
         data: () =>  e.data || {}
       });
       this.$emit('backButton', this.pageStack);
-    }
+    },
   }
 }
 </script>

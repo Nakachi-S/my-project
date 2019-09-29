@@ -57,9 +57,9 @@
     </v-container>
   </v-content>
   <v-footer app color="light-blue">
-      <v-spacer></v-spacer>
-      <span class="white--text">&copy; 2019</span>
-    </v-footer>
+    <v-spacer></v-spacer>
+    <span class="white--text">&copy; 2019</span>
+  </v-footer>
 </v-app>
 </template>
 

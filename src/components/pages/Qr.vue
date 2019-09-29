@@ -21,6 +21,7 @@ import { QrcodeStream } from 'vue-qrcode-reader'
 export default {
   components: { QrcodeStream },
   name: "Qr",
+  key: "Qr",
   data () {
     return {
       //qr関連

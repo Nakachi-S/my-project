@@ -2,13 +2,21 @@
   <v-ons-page>
     <v-ons-card>
       <div class="title">
-        <span class='marker'>ホーム画面</span>
+        <span class='marker'>チェックイン</span>
       </div>
       <div class="content">
-        ここにあなたのお気に入りの場所や<br>
-        宿泊先の情報が表示されます。
+        カメラアイコンをタップして<br>
+        チェックインをしましょう
       </div>
     </v-ons-card>
+    <v-ons-fab
+      position="bottom center"
+      :visible="true"
+      :ripple="true"
+      @click = "pushPage"
+    >
+      <v-ons-icon icon="camera"></v-ons-icon>
+    </v-ons-fab>
   </v-ons-page>
 </template>
 
@@ -16,8 +24,8 @@
 /* eslint-disable */
 import Qr from '../pages/Qr'
 export default {
-  name: "Home",
-  key: "HomeMaster",
+  name: "CheckIn",
+  key: "CheckInMaster",
   data () {
     return {
     }

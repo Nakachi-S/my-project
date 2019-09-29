@@ -23,28 +23,16 @@
     >
     </v-ons-tabbar>
   </v-ons-page>
-
-  <!--
-  <v-ons-page>
-    <v-ons-toolbar>
-      <div class="center">Smart-Inn</div>
-    </v-ons-toolbar>
-    <v-ons-tabbar swipeable:="false" position="bottom"
-      :tabs="tabs"
-      :visible="true"
-      :index.sync="tabbarIndex"
-    >
-    </v-ons-tabbar>
-  </v-ons-page>
-  -->
 </template>
 
 
 <script>
 /* eslint-disable */
-import Home from '../parts/Home'
 import Nav from './Nav'
+import Home from '../parts/Home'
 import Map from '../parts/Map'
+import CheckIn from '../parts/CheckIn'
+import Setting from '../parts/Setting'
 
 export default {
   name: 'HomeGuest',
@@ -82,10 +70,38 @@ export default {
             }
           }
         },
+        {
+          icon: 'camera',
+          label: 'Check In',
+          page: Nav,
+          key: 'CheckIn',
+          props: {
+            list: {
+              extends: CheckIn,
+              data() {
+              return {};
+              }
+            }
+          }
+        },
+        {
+          icon: 'cog',
+          label: 'Setting',
+          page: Nav,
+          key: 'Setting',
+          props: {
+            list: {
+              extends: Setting,
+              data() {
+              return {};
+              }
+            }
+          }
+        },
       ]
     };
   },
-  components: {Home, Map, Nav},
+  components: {Home, Map, Nav, CheckIn, Setting},
   mounted () {
     this.checkLoggedIn()
   },
