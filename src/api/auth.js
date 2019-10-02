@@ -26,6 +26,7 @@ export default function (cli) {
       }
       return cli.post('auth/register_host/', data)
     },
+    // 宿泊台帳ポスト
     guest_info_post(user, country, birthday, address, gender) {
       const data = {
         user,
