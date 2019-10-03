@@ -11,12 +11,14 @@ import App from './App'
 import Vuetify from 'vuetify'
 import 'vuetify/dist/vuetify.min.css'
 import api from './api'  // <---追加
+import VueQriously from 'vue-qriously'
 
 Vue.config.productionTip = true
 
 Vue.use(VueOnsen)
 Vue.use(Vuetify)
 Vue.use(api) // <---追加
+Vue.use(VueQriously)
 
 /* eslint-disable no-new */
 new Vue({

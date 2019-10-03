@@ -13,6 +13,7 @@ import InfoGuest from '@/components/pages/InfoGuest'
 import HomeHost from '@/components/pages/HomeHost'
 import SignupHost from '@/components/pages/SignupHost'
 import InfoHost from '@/components/pages/InfoHost'
+import QrHost from '@/components/pages/QrHost'
 
 Vue.use(Router)
 
@@ -61,6 +62,11 @@ export default new Router({
       path: '/host/info',
       name: 'InfoHost',
       component: InfoHost
+    },
+    {
+      path: '/host/qr',
+      name: 'QrHost',
+      component: QrHost
     }
   ]
 })

@@ -25,31 +25,31 @@
                   color="primary"
                   indeterminate
                 />
-              </v-layout>
-                <v-form v-else ref="form" v-model="valid" lazy-validation>
-                  <v-container>
-                    <v-text-field
-                      v-model="credentials.email"
-                      :counter="70"
-                      label="Eメールアドレス"
-                      maxlength="70"
-                      required
-                    />
+              </v-layout> 
+              <v-form v-else ref="form" v-model="valid" lazy-validation>
+                <v-container>
+                  <v-text-field
+                    v-model="credentials.email"
+                    :counter="70"
+                    label="Eメールアドレス"
+                    maxlength="70"
+                    required
+                  />
 
-                    <v-text-field
-                      type="password"
-                      v-model="credentials.password"
-                      :counter="20"
-                      label="パスワード"
-                      maxlength="20"
-                      required
-                    />
-                  </v-container>
-                  <v-btn class="light-blue white--text" depressed :disabled="!valid" @click="submit">ログイン</v-btn>
-                </v-form>
-              </v-card-text>
-            </v-card>
-          </v-flex>
+                  <v-text-field
+                    type="password"
+                    v-model="credentials.password"
+                    :counter="20"
+                    label="パスワード"
+                    maxlength="20"
+                    required
+                  />
+                </v-container>
+                <v-btn class="light-blue white--text" depressed :disabled="!valid" @click="submit">ログイン</v-btn>
+              </v-form>
+            </v-card-text>
+          </v-card>
+        </v-flex>
         <v-flex xs12 sm12 md12 text-center>
           <a href='/'>Homeにもどる</a>
         </v-flex>
@@ -80,18 +80,40 @@ export default {
       // v => (v && v.length > 4) || "ユーザー名は5文字以上でなければなりません"
     ]
   }),
+
+  mounted () {
+    localStorage.clear()
+  },
+
   methods: {
     ...mapActions(['login']),
+    ...mapActions(['myInfoGet']),
 
     submit () {
-      // vuex版
       this.nonFieldErrors = []
       this.login([this.credentials.email, this.credentials.password]).then(res => {
-        this.$router.push('guest/home')
+        // ゲストとホストの分岐
+        this.myInfoGet().then(res => {
+          // console.log(res['is_host'])
+          if (res['is_host']) {
+            this.$router.push('host/home')
+          } else {
+            this.$router.push('guest/home')
+          }
+        })
       }, err => {
         this.nonFieldErrors = err.response.data.nonFieldErrors
       })
 
+      // vuex版
+      // this.nonFieldErrors = []
+      // this.login([this.credentials.email, this.credentials.password]).then(res => {
+      //   this.$router.push('guest/home')
+      // }, err => {
+      //   this.nonFieldErrors = err.response.data.nonFieldErrors
+      // })
+
+      // 通常版
       // this.$request.auth.login(this.credentials.email, this.credentials.password).then(res => {
       //   console.log(res.data)
       //   this.$request.defaults.headers.common['Authorization'] = `JWT ${res.data.token}`

@@ -35,6 +35,22 @@
             </v-ons-input>
         </v-ons-list-item>
       </v-ons-list>
+      <br>
+      <v-ons-list>
+        <v-ons-list-header>性別</v-ons-list-header>
+         <v-ons-list-item>
+            <v-ons-select style="width: 40%"
+            v-model="gender"
+            >
+              <option v-for="item in items" :value="item.value">
+                {{ item.text }}
+              </option>
+          </v-ons-select>
+        </v-ons-list-item>
+      </v-ons-list>
+      <div class='container_button'>
+        <v-ons-button @click = "submit" class='register_button'>登録</v-ons-button>
+      </div>
     </v-ons-page>
 </template>
 
@@ -47,18 +63,22 @@ export default {
       first_name: '',
       second_name: '',
       address: '',
-      date: ''
+      date: '',
+      // なぜか最初が表示されないので？？を
+      items: [ { text: '??', value: 2 }, { text: '男性', value: 0 }, { text: '女性', value: 1 } ],
+      gender: ''
     }
   },
   mounted () {
-    // this.checkLoggedIn()
   },
   methods: {
-    // checkLoggedIn () {
-    //   if (!this.$request.defaults.headers.common['Authorization']) {
-    //     router.push('/login')
-    //   }
-    // }
+    submit () {
+      console.log(this.first_name)
+      console.log(this.second_name)
+      console.log(this.address)
+      console.log(this.date)
+      console.log(this.gender)
+    }
   }
 }
 </script>

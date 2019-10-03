@@ -10,6 +10,9 @@ const debug = process.env.NODE_ENV !== 'production'
 
 const state = {
   isLoggedIn: false,
+  isInfo: false,
+  user_id: '',
+  mail_address: ''
 }
 
 const mutations = {
@@ -25,6 +28,19 @@ const mutations = {
     delete client.defaults.headers.common['Authorization']
     localStorage.clear()  // <--- 追加
   },
+  // ユーザー情報の取得
+  myInfoGet(state, data) {
+    state.user_id = data.id
+    state.mail_address = data.email
+
+    localStorage.setItem('id', data.id)  // <---- 追加
+    localStorage.setItem('email', data.email)  // <---- 追加
+
+    if (data.is_info) {
+      state.isInfo = true
+    }
+    console.log(state.mail_address)
+  }
 }
 
 const actions = {
@@ -43,6 +59,14 @@ const actions = {
     if (token) {
       commit('loggedIn', token)
     }
+  },
+  // ユーザー情報取得
+  myInfoGet({ commit }) {
+    return client.auth.my_info_get().then(res => {
+      // console.log(res.data)
+      commit('myInfoGet', res.data) //stateのisInfoを変更する
+      return res.data
+    })
   },
 }
 

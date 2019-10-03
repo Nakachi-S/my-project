@@ -25,7 +25,7 @@
               <v-card-title>宿泊施設提供者へ</v-card-title>
               <v-card-text>あなたの宿泊施設をスマートに</v-card-text>
               <v-card-actions>
-                <v-btn color="light-blue" href="/host/signup"><span style="color:white">はじめる</span></v-btn>
+                <v-btn color="light-blue" href="/host/signup" depressed><span style="color:white">はじめる</span></v-btn>
               </v-card-actions>
             </v-card>
           </v-flex>
@@ -44,13 +44,11 @@
 export default {
   name: 'Welcome',
   methods: {
-    checkLoggedIn () {
-      this.$router.push('/login')
-    }
   }
 }
 </script>
 <style>
+
 .content{
   overflow: scroll;
   height: 100vh;

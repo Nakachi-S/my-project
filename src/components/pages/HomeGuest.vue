@@ -33,6 +33,7 @@ import Home from '../parts/Home'
 import Map from '../parts/Map'
 import CheckIn from '../parts/CheckIn'
 import Setting from '../parts/Setting'
+import {mapActions} from 'vuex'  // 追加
 
 export default {
   name: 'HomeGuest',
@@ -104,8 +105,11 @@ export default {
   components: {Home, Map, Nav, CheckIn, Setting},
   mounted () {
     this.checkLoggedIn()
+    this.myInfoGet()
   },
   methods: {
+    ...mapActions(['myInfoGet']),
+    
     md() {
       return this.$ons.platform.isAndroid();
     },
